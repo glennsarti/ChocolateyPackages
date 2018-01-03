@@ -3,25 +3,6 @@ $ErrorActionPreference = 'Stop'
 $script:ChocoPackageName = 'pdk-community'
 
 Function Get-VersionListFromGithub() {
-  # @('0.1.0',
-  # '0.2.0',
-  # '0.3.0',
-  # '0.4.0',
-  # '0.4.1',
-  # '0.4.2',
-  # '0.4.3',
-  # '0.4.4',
-  # '0.5.0',
-  # '0.6.0',
-  # '1.0.0',
-  # '1.0.1',
-  # '1.1.0',
-  # '1.2.0',
-  # '1.2.1',
-  # '1.3.0',
-  @('1.3.1') | % { Write-Output $_ }
-  return
-
   $tempLocation = Join-Path -Path $ENV:Temp -ChildPath ([guid]::NewGuid().ToString())
 
   (& git clone https://github.com/puppetlabs/pdk.git $tempLocation) | Out-Null
@@ -33,7 +14,11 @@ Function Get-VersionListFromGithub() {
   Remove-Item -Path $tempLocation -Recurse -Force -Confirm:$false | Out-Null
 
   $result | % {
-    Write-Output $_.Replace('v','')
+    $rawVersion = $_.Replace('v','')
+    # We only care about version 1.1 and above
+    if ($rawVersion -match "^0") { $rawVersion = '' }
+    if ($rawVersion -match "^1\.0\.") { $rawVersion = '' }
+    if ($rawVersion -ne '') { Write-Output $rawVersion }
   }
 }
 
