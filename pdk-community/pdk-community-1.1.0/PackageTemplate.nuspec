@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>{{PackageName}}</id>
-    <version>{{PackageVersion}}</version>
+    <id>pdk-community</id>
+    <version>1.1.0</version>
     <title>Puppet Development Kit</title>
     <authors>Puppet Inc.</authors><!-- App Owners -->
     <owners>Glenn Sarti</owners> <!-- Package Maintainers -->
@@ -27,7 +27,7 @@ You can also convert existing modules to make them compatible with PDK. This all
     <summary>Puppet Development Kit (PDK) is a package of development and testing tools to help you create great Puppet modules.</summary>
     <releaseNotes>Full list of changes are available on GitHub; https://github.com/glennsarti/ChocolateyPackages
 
-### Version {{PackageVersion}}
+### Version 1.1.0
 * Initial Release
     </releaseNotes>
     <tags>puppet development kit modules configuration management ruby</tags>
