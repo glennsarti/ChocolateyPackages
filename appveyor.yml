@@ -24,4 +24,7 @@ build:
 build_script:
   - pushd pdk-community
   - psake AppVeyor
+  - popd
+  - pushd pe-client-tools-community
+  - psake AppVeyor
   - exit %ERRORLEVEL%
