@@ -22,9 +22,13 @@ build:
   verbosity: minimal
 
 build_script:
-  - pushd pdk-community
-  - psake AppVeyor
-  - popd
-  - pushd pe-client-tools-community
-  - psake AppVeyor
-  - exit %ERRORLEVEL%
+  - ps: "$errorcode = 0"
+  - ps: "Push-Location 'pdk-community'"
+  - ps: "& psake AppVeyor"
+  - ps: "$ErrorCode += $LastExitCode"
+  - ps: "Pop-Location"
+  - ps: "Push-Location 'pe-client-tools-community'"
+  - ps: "& psake AppVeyor"
+  - ps: "$ErrorCode += $LastExitCode"
+  - ps: "Write-Host ('Error Code ' + $ErrorCode.ToString())"
+  - ps: "$host.SetShouldExit($ErrorCode)"
