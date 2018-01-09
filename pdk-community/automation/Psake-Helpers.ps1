@@ -145,16 +145,14 @@ Function Invoke-SubmitMissingPackages($pkgDir,$locallist) {
 
         if ($localPkgList -notcontains $thisFile.BaseName) {
           Write-Host "Pushing into chocolatey..."
-          # DISBABLED
-          # & choco push ($thisFile.FullName) --source https://chocolatey.org/
+          & choco push ($thisFile.FullName) --source https://chocolatey.org/
           if ($LASTEXITCODE -ne 0) { Throw "Failed to push $($thisFile.FullName) to Chocolatey with error $LASTEXITCODE"}
 
           Write-Host "Adding package to submitted list"
           $thisFile.Name.Replace('.nupkg','') | Out-File -Append -NoClobber -FilePath $locallist -Encoding ASCII
-          # DISBABLED
-          # & git add ($locallist)
-          # & git commit -m "New package $($thisFile.Name.Replace('.nupkg','')) published by Appveyor $((Get-Date).ToString("yyyy-MM-dd-HH:mm:sszzz"))"
-          # & git push origin
+          & git add ($locallist)
+          & git commit -m "New package $($thisFile.Name.Replace('.nupkg','')) published by Appveyor $((Get-Date).ToString("yyyy-MM-dd-HH:mm:sszzz"))"
+          & git push origin
         } else {
           Write-Host "Local package $($thisFile.Name) has been submitted previously"
         }
