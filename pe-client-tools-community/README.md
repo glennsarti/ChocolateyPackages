@@ -6,6 +6,7 @@ This project is a collection Chocolatey packages to install community based appl
 [Chocolatey Package](https://chocolatey.org/packages/pe-client-tools-community)
 
 Standard Releases
+* [Package version 17.3.2](pe-client-tools-community-17.3.2/)
 * [Package version 17.3.1](pe-client-tools-community-17.3.1/)
 * [Package version 17.3.0](pe-client-tools-community-17.3.0/)
 * [Package version 17.2.4](pe-client-tools-community-17.2.4/)
