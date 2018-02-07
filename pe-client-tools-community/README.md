@@ -14,6 +14,7 @@ Standard Releases
 * [Package version 17.2.0](pe-client-tools-community-17.2.0/)
 * [Package version 17.1.2](pe-client-tools-community-17.1.2/)
 * [Package version 16.5.2](pe-client-tools-community-16.5.2/)
+* [Package version 16.4.4](pe-client-tools-community-16.4.4/)
 * [Package version 16.4.3](pe-client-tools-community-16.4.3/)
 * [Package version 16.4.2](pe-client-tools-community-16.4.2/)
 * [Package version 16.4.1](pe-client-tools-community-16.4.1/)
