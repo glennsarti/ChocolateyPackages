@@ -5,6 +5,7 @@ $script:ChocoPackageName = 'pe-client-tools-community'
 Function Get-VersionListFromWebsite() {
   $versions = @{}
   $prev_url = 'https://puppet.com/misc/pe-files/previous-releases'
+  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
   $result = Invoke-WebRequest -URI $prev_url -UseBasicParsing
 
   $result.links | ? { $_.href -match '/pe-files/previous-releases/'} | % {
