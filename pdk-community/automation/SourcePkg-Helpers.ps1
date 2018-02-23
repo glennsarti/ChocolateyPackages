@@ -2,23 +2,14 @@ $ErrorActionPreference = 'Stop'
 
 $script:ChocoPackageName = 'pdk-community'
 
-Function Get-VersionListFromGithub() {
-  $tempLocation = Join-Path -Path $ENV:Temp -ChildPath ([guid]::NewGuid().ToString())
+Function Get-VersionListFromWebsite() {
+  $url = 'http://downloads.puppetlabs.com/windows/'
+  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+  $result = Invoke-WebRequest -URI $url -UseBasicParsing
 
-  (& git clone https://github.com/puppetlabs/pdk.git $tempLocation) | Out-Null
-
-  Push-Location $tempLocation
-  $result = (& git tag --list 'v*')
-  Pop-Location
-
-  Remove-Item -Path $tempLocation -Recurse -Force -Confirm:$false | Out-Null
-
-  $result | % {
-    $rawVersion = $_.Replace('v','')
-    # We only care about version 1.1 and above
-    if ($rawVersion -match "^0") { $rawVersion = '' }
-    if ($rawVersion -match "^1\.0\.") { $rawVersion = '' }
-    if ($rawVersion -ne '') { Write-Output $rawVersion }
+  $result.links | ? { $_.href -match 'pdk-'} | % {
+    $_.href -match 'pdk-([\d.]+)\.0-x64\.msi$' | Out-Null
+    Write-Output $matches[1]
   }
 }
 
@@ -37,7 +28,7 @@ Function Invoke-CreateMissingTemplates($RootDir) {
   if (-not (Test-Path -Path $downloadDir)) { New-Item -Path $downloadDir -ItemType Directory | Out-Null }
 
   # Get Version lists
-  $sourceList = Get-VersionListFromGithub
+  $sourceList = Get-VersionListFromWebsite
   if ($sourceList -eq $null) { $sourceList = @() }
   if ($sourceList.GetType().ToString() -eq 'System.String') { $sourceList = @($sourceList) }
   $repoList = Get-VersionListFromRepo -RootDir $RootDir
