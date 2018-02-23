@@ -54,10 +54,12 @@ Function Invoke-CreateMissingTemplates($RootDir) {
 
       Write-Host "Generating MD5 Hash..."
       $downloadHash = Get-FileHash -Path $sourceFile -Algorithm MD5
+      Write-Host "Generating SHA256 Hash..."
+      $sha256downloadHash = Get-FileHash -Path $sourceFile -Algorithm SHA256
 
       # Generate the rest of the Package Definition
       $PackageVersion = $sourceVersion
-      $TemplateName = 'pdk-community-v0.0.1'
+      $TemplateName = 'pdk-community-v0.0.2'
 
       $templateContents = @"
 `$PackageDefinition = @{
@@ -66,6 +68,7 @@ Function Invoke-CreateMissingTemplates($RootDir) {
   "PackageVersion" = "$($PackageVersion)";
   "DownloadURL" = "$($downloadURL)";
   "MD5Checksum" = "$($downloadHash.Hash.ToLower())";
+  "SHA256Checksum" = "$($sha256downloadHash.Hash.ToLower())";
 }
 "@
       $templateFile = Join-Path -Path "$($RootDir)\templates" -ChildPath "package-$($Script:ChocoPackageName)-$($PackageVersion).ps1"
