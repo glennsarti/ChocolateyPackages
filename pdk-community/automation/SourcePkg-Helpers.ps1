@@ -8,7 +8,7 @@ Function Get-VersionListFromWebsite() {
   $result = Invoke-WebRequest -URI $url -UseBasicParsing
 
   $result.links | ? { $_.href -match 'pdk-'} | % {
-    $_.href -match 'pdk-([\d.]+)\.0-x64\.msi$' | Out-Null
+    $_.href -match 'pdk-([\d.]+)-x64\.msi$' | Out-Null
     Write-Output $matches[1]
   }
 }
@@ -36,13 +36,16 @@ Function Invoke-CreateMissingTemplates($RootDir) {
 
   # Find new versions
   $sourceList | ForEach-Object {
-    $sourceVersion = $_
+    $fullSourceVersion = $_
+    $fullSourceVersion -match "^([\d.]+)\.[\d]+$" | Out-Null
+    $sourceVersion = $matches[1]
+
     if ($repoList -contains $sourceVersion) {
       Write-Host "$($Script:ChocoPackageName) v$($sourceVersion) is already in this repository"
     } else {
       Write-Host "Creating $($Script:ChocoPackageName) v$($sourceVersion) template..."
 
-      $urlVersion = $sourceVersion + '.0'
+      $urlVersion = $fullSourceVersion
       $downloadURL = "https://puppet-pdk.s3.amazonaws.com/pdk/${urlVersion}/repos/windows/pdk-${urlVersion}-x64.msi"
       $sourceFile = Join-Path -Path $downloadDir -ChildPath "source-$($urlVersion).msi"
       if (-not (Test-Path -Path $sourceFile)) {
