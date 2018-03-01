@@ -6,6 +6,7 @@ This project is a collection Chocolatey packages to install community based appl
 [Chocolatey Package](https://chocolatey.org/packages/pdk-community)
 
 Standard Releases
+* [Package version 1.4.1](pdk-community-1.4.1/)
 * [Package version 1.3.2](pdk-community-1.3.2/)
 * [Package version 1.3.1](pdk-community-1.3.1/)
 * [Package version 1.3.0](pdk-community-1.3.0/)
