@@ -183,40 +183,42 @@ Task CreateNewPackages -Description 'Updates the repository with newly release v
 
 # Appveyor Automation
 Task AppVeyor -Description 'Automated task run by AppVeyor' {
-  if ($ENV:APPVEYOR -eq $null) { Throw "Only run in AppVeyor!"; return }
+  # Disabled as this package is deprecated
+  #
+  # if ($ENV:APPVEYOR -eq $null) { Throw "Only run in AppVeyor!"; return }
 
-  Write-Host "Running AppVeyor Task"
+  # Write-Host "Running AppVeyor Task"
 
-  Get-childItem -Path "env:" |
-    Where-Object { $_.Name -like "APPVEYOR_REPO_*" } |
-    ForEach-Object { Write-Host "Environment: $($_.Name)=$($_.Value)"}
+  # Get-childItem -Path "env:" |
+  #   Where-Object { $_.Name -like "APPVEYOR_REPO_*" } |
+  #   ForEach-Object { Write-Host "Environment: $($_.Name)=$($_.Value)"}
 
-    if ($ENV:APPVEYOR_SCHEDULED_BUILD -eq "True") {
-        Write-Host "*** This is a scheduled build"
+  #   if ($ENV:APPVEYOR_SCHEDULED_BUILD -eq "True") {
+  #       Write-Host "*** This is a scheduled build"
 
-    if ($ENV:APPVEYOR_REPO_BRANCH -ne 'master') { throw "Scheduled build can only occur on master branch" }
-    & git checkout master
-    $pkgList = Invoke-CreateNewPackageProcess -RootDir $srcDirectory
+  #   if ($ENV:APPVEYOR_REPO_BRANCH -ne 'master') { throw "Scheduled build can only occur on master branch" }
+  #   & git checkout master
+  #   $pkgList = Invoke-CreateNewPackageProcess -RootDir $srcDirectory
 
-    if ($pkgList -ne $null) {
-      & git add --a
-      & git commit -m "New Packages added by Appveyor $((Get-Date).ToString("yyyy-MM-dd-HH:mm:sszzz"))"
-      Write-Host "Pushing to origin..."
-      & git push origin
-    }
+  #   if ($pkgList -ne $null) {
+  #     & git add --a
+  #     & git commit -m "New Packages added by Appveyor $((Get-Date).ToString("yyyy-MM-dd-HH:mm:sszzz"))"
+  #     Write-Host "Pushing to origin..."
+  #     & git push origin
+  #   }
 
-    Write-Host "Building all packages"
-    Invoke-Clean
-    Invoke-PackAll
+  #   Write-Host "Building all packages"
+  #   Invoke-Clean
+  #   Invoke-PackAll
 
-    Write-Host "Publishing to Chocolatey..."
-    Invoke-SubmitMissingPackages -pkgDir $artefactDir -locallist "$srcDirectory\submitted_pkgs.txt"
-  } else {
-    Write-Host "Not a scheduled build"
+  #   Write-Host "Publishing to Chocolatey..."
+  #   Invoke-SubmitMissingPackages -pkgDir $artefactDir -locallist "$srcDirectory\submitted_pkgs.txt"
+  # } else {
+  #   Write-Host "Not a scheduled build"
 
-    Invoke-Clean
-    Invoke-BuildAll
-    Invoke-GenerateReadMe -RootDir $srcDirectory | Out-Null
-    Invoke-PackAll
-  }
+  #   Invoke-Clean
+  #   Invoke-BuildAll
+  #   Invoke-GenerateReadMe -RootDir $srcDirectory | Out-Null
+  #   Invoke-PackAll
+  # }
 }

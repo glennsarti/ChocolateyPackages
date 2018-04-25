@@ -1,3 +1,5 @@
+# THIS IS NOW DEPRECATED.  AUTOMATED RELEASES HAVE BEEN DISABLED
+
 ## What is this?
 This project is a collection Chocolatey packages to install community based applications onto Windows.
 
