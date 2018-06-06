@@ -23,8 +23,3 @@ build:
 
 build_script:
   - ps: "$errorcode = 0"
-  - ps: "Push-Location 'pe-client-tools-community'"
-  - cmd: "psake AppVeyor"
-  - ps: "$ErrorCode += $LastExitCode"
-  - ps: "Write-Host ('Error Code ' + $ErrorCode.ToString())"
-  - ps: "$host.SetShouldExit($ErrorCode)"
