@@ -1,0 +1,21 @@
+name: Test all automatic packages
+on:
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: windows-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: "Run tests"
+        shell: pwsh
+        run: |
+          $PSVersionTable | ft
+          ./setup/au_setup.ps1
+          ./test_all.ps1

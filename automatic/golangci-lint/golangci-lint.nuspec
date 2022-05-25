@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>golangci-lint</id>
+    <version>1.46.2</version>
+    <title>Golang CI Linter</title>
+    <authors>Glenn Sarti</authors>
+    <owners>Glenn Sarti</owners>
+    <projectUrl>https://github.com/golangci/golangci-lint</projectUrl>
+    <packageSourceUrl>https://github.com/glennsarti/ChocolateyPackages</packageSourceUrl>
+    <projectSourceUrl>https://github.com/golangci/golangci-lint</projectSourceUrl>
+    <docsUrl>https://golangci-lint.run/</docsUrl>
+    <bugTrackerUrl>https://github.com/golangci/golangci-lint/issues</bugTrackerUrl>
+    <licenseUrl>https://github.com/golangci/golangci-lint/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <iconUrl>https://cdn.rawgit.com/golangci/golangci-lint/master/assets/go.png</iconUrl>
+    <description>
+Fast linters Runner for Go
+
+**Please Note**: This is an automatically updated package. If you find it is
+out of date by more than a day or two, please contact the maintainer(s) and
+let them know the package is no longer updating correctly.
+    </description>
+    <summary>golangci-lint is a Go linters aggregator.</summary>
+    <releaseNotes>See https://github.com/golangci/golangci-lint/blob/master/CHANGELOG.md</releaseNotes>
+    <copyright>The Go Authors</copyright>
+    <tags>go golang lint linter</tags>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
+<!-- character encoding: "UTF-8" -->

@@ -1,25 +1,113 @@
-version: 1.0.{build}
+# AU template: https://github.com/majkinetor/au-packages-template
+
+version: '{build}'
+max_jobs: 1
+image: WMF 5
+# History plugin requires complete log
+#clone_depth: 5
 branches:
   only:
   - master
-environment:
-  github_access_token:
-    secure: PBm4kGT2TjiNXOmiMN0NdDJs6jfxoK5PRD+ZEDoyKhoRTx/fLk5zBk0P3oAhRNNm
-  chocolatey_access_token:
-    secure: ilX0DTiIVBrpTqdQ1yL0JraOISx/vCsQZMnzEY7NVZQ6SA1N2WhdGfnLqWw30tLI
-install:
-  # Install psake
-  - choco install psake -y
-  # Configure Git
-  - git config --global credential.helper store
-  - ps: if ($ENV:github_access_token -ne $null) { Write-Output "Writing github key"; Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n" }
-  - git config --global user.email "glennsarti@users.noreply.github.com"
-  - git config --global user.name "Glenn Sarti"
-  # Configure Chocolatey
-  - ps: if ($ENV:chocolatey_access_token -ne $null) { (& choco apikey -k "$($ENV:chocolatey_access_token)" -s https://chocolatey.org/) }
+#build:
+#  verbosity: minimal
 
-build:
-  verbosity: minimal
+environment:
+  # Set au version to use or omit to use the latest. Specify branch name to use development version from Github
+  au_version:
+  au_push: true
+  # Force test: use 1 to test all, or N to split testing into N groups
+  au_test_groups: 1
+
+  # Github token to commit pushed packages to repository
+  github_user_repo: puppetlabs/puppet-chocolatey-packages
+  github_api_key:
+    secure: 1YJp8L2h54dD16StLwXOjAssj4UCDHnTNvPVRLghwfCZgcaVehBZb8wztAyDbgL5 #https://ci.appveyor.com/tools/encrypt
+
+
+  # Mail credentials - for error notifications
+  mail_user:
+    secure: gqbe3Ynegs/YUAI/JGNULU1WklvjEK1vELFJi9PCg8M= #https://ci.appveyor.com/tools/encrypt
+  mail_pass:
+    secure: YOUR_EMAIL_PASSWORD_HERE_ENCRYPTED_STRING #https://ci.appveyor.com/tools/encrypt
+  mail_server: smtp.gmail.com
+  mail_port: 587
+  mail_enablessl: true
+
+  # ID of the gist used to save run results - create a gist under the github_user (secret or not) and grab the id - https://gist.github.com/name/id
+  # Optional, leave empty to create anonymous gist
+  gist_id: 07d26b70044a34c1d9aa5576057d515e
+
+  # Force test: gist id for test results
+  gist_id_test:
+
+  # Chocolatey API key - to push updated packages
+  api_key:
+    secure: aIC39NG9E2lK5rEFMIXXgAgwfKd45/9Mny1K/eHuD2xSUrDHsz8u032pQdO4PuJ6 # https://ci.appveyor.com/tools/encrypt
+
+init:
+- git config --global user.email "puppet-chocolatey-bot@users.noreply.github.com"
+- git config --global user.name "Puppet Chocolatey Bot"
+- git config --global core.safecrlf false
+
+install:
+- ps: 'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
+- ps: $PSVersionTable
+- git --version
+- ps: |
+    setup\au_setup.ps1
+
+- ps: |
+    "Build info"
+    '  {0,-20} {1}' -f 'SCHEDULED BUILD:', ($Env:APPVEYOR_SCHEDULED_BUILD -eq 'true')
+    '  {0,-20} {1}' -f 'FORCED BUILD:'   , ($Env:APPVEYOR_FORCED_BUILD    -eq 'true')
+    '  {0,-20} {1}' -f 'RE BUILD:'       , ($Env:APPVEYOR_RE_BUILD        -eq 'true')
 
 build_script:
-  - ps: "$errorcode = 0"
+- ps: |
+    $ErrorActionPreference = 'Continue'
+
+    if ($Env:APPVEYOR_PROJECT_NAME  -like '*test*') { ./test_all.ps1 "random $Env:au_test_groups"; return }
+
+    if ( ($Env:APPVEYOR_SCHEDULED_BUILD -ne 'true') -and ($Env:APPVEYOR_FORCED_BUILD -ne 'true') ) {
+        switch -regex ($Env:APPVEYOR_REPO_COMMIT_MESSAGE)
+        {
+            '\[AU (.+?)\]'   { $forced = $Matches[1] }
+
+            '\[PUSH (.+?)\]' {
+                $packages = $Matches[1] -split ' '
+                Write-Host "PUSHING PACKAGES: $packages"
+                foreach ($package in $packages) {
+                    Write-Host ("{0}`n{1}`n" -f ('-'*60), "PACKAGE: $package")
+                    $package_dir = ls -recurse | ? { $_.Name -eq "$package.nuspec"} | select -First 1 | % Directory
+                    if (!$package_dir) { Write-Warning "Can't find package '$package'"; continue }
+                    pushd $package_dir; choco pack; Push-Package; popd
+                }
+                return
+            }
+
+            default {
+                Write-Host "Commit message is not automated format.  Disabling Pushing, Git and Gist"
+                $Env:au_push = 'false'
+                $Env:github_api_key = ''
+                $Env:gist_id = ''
+            }
+        }
+    }
+
+    ./update_all.ps1 -ForcedPackages $forced
+    7z a au_temp.zip $Env:TEMP\chocolatey\au\*
+
+artifacts:
+- path: update_info.xml
+- path: Update-AUPackages.md
+- path: au_temp.zip
+
+notifications:
+- provider: Email
+  to: $(mail_user)
+  on_build_success: false
+  on_build_failure: false
+  on_build_status_changed: false
+
+#on_finish:
+#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

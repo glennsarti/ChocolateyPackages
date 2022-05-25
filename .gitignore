@@ -5,3 +5,35 @@ Desktop.INI
 **/download/*
 
 **/nuget.exe
+
+*~
+*.bak
+*.cache
+*.nupkg
+*.old
+*.orig
+*.swp
+*.swo
+*.suo
+*.test
+*.work
+*.handover
+*.new
+*.exist
+*-orig.*
+Thumbs.db
+.DS_Store
+_ReSharper*
+*.resharper
+New folder*
+New Text Document*.txt
+obj
+*/working
+ketarin/soluto.xml
+*.stackdump
+update_vars.ps1
+update_info.xml
+Update-AUPackages.md
+# Ignore downloaded packages
+*.msi
+*.exe

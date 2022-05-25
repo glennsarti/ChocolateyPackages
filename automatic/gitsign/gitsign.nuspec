@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>gitsign</id>
+    <version>0.1.1</version>
+    <title>Keyless Git signing using Sigstore</title>
+    <authors>Glenn Sarti</authors>
+    <owners>Glenn Sarti</owners>
+    <projectUrl>https://github.com/sigstore/gitsign</projectUrl>
+    <packageSourceUrl>https://github.com/glennsarti/ChocolateyPackages</packageSourceUrl>
+    <projectSourceUrl>https://github.com/sigstore/gitsign</projectSourceUrl>
+    <docsUrl>https://docs.sigstore.dev/gitsign/overview/</docsUrl>
+    <bugTrackerUrl>https://github.com/sigstore/gitsign/issues</bugTrackerUrl>
+    <licenseUrl>https://github.com/sigstore/gitsign/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://cdn.rawgit.com/sigstore/sigstore-website/docs/static/icon.png</iconUrl>
+    <description>
+Gitsign implements keyless Sigstore to sign Git commits with a valid OpenID identity.
+In practice, that means you won't need GPG keys and a complicated setup in order to sign your Git commits.
+After installing and configuring Gitsign within your project and signing your commits, you will be redirected to a browser window to authenticate with a supported OpenID provider, such as GitHub or Google.
+Signing details will then be stored in Rekor for subsequent verification.
+
+Gitsign is part of the Sigstore project.
+
+This package only installs gitsign. See the [documentation](https://docs.sigstore.dev/gitsign/installation#configuring-git-to-use-gitsign) on how to configure git
+
+**Please Note**: This is an automatically updated package. If you find it is
+out of date by more than a day or two, please contact the maintainer(s) and
+let them know the package is no longer updating correctly.
+    </description>
+    <summary>Gitsign implements keyless Sigstore to sign Git commits with a valid OpenID identity.</summary>
+    <releaseNotes>See https://github.com/sigstore/gitsign/blob/master/CHANGELOG.md</releaseNotes>
+    <copyright>The Sigstore Authors</copyright>
+    <tags>git signing gitsign pki oidc</tags>
+  </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+  </files>
+</package>
+<!-- character encoding: "UTF-8" -->
