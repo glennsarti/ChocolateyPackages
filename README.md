@@ -1,6 +1,6 @@
 # Chocolatey Packages
 [![Build and Push all automatic packages](https://github.com/glennsarti/ChocolateyPackages/actions/workflows/build_and_push.yaml/badge.svg?branch=main)](https://github.com/glennsarti/ChocolateyPackages/actions/workflows/build_and_push.yaml)
-![GitHub Gist last commit](https://img.shields.io/github/gist/last-commit/bd4f850684e8b9b26e9d64a87415d0ac?label=Update%20report&logo=github)
+[![GitHub Gist last commit](https://img.shields.io/github/gist/last-commit/bd4f850684e8b9b26e9d64a87415d0ac?label=Update%20report&logo=github)](https://gist.github.com/glennsarti-bot/bd4f850684e8b9b26e9d64a87415d0ac)
 
 ## Chocolatey Packages
 
