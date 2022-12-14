@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>hashicorp-sentinel</id>
+    <version>0.17.4</version>
+    <title>HashiCorp Sentinel</title>
+    <authors>HashiCorp</authors>
+    <owners>Glenn Sarti</owners>
+    <projectUrl>https://docs.hashicorp.com/sentinel/intro</projectUrl>
+    <packageSourceUrl>https://github.com/glennsarti/ChocolateyPackages</packageSourceUrl>
+    <docsUrl>https://docs.hashicorp.com/sentinel</docsUrl>
+    <iconUrl>https://raw.githubusercontent.com/glennsarti/ChocolateyPackages/main/icons/terraform.png</iconUrl>
+    <description>
+Policy as code is the idea of writing code in a high-level language to manage and automate policies. By representing policies as code in text files, proven software development best practices can be adopted such as version control, automated testing, and automated deployment.
+
+Sentinel fully embraces policy as code in a number of ways:
+
+* Language. All Sentinel policies are written using the Sentinel language. This language is made to be inputted directly to text files. As an additional benefit, all Sentinel-enabled applications share the same policy language.
+
+* Development. Sentinel provides a CLI for development and testing. This local CLI can be used to verify policies before deploying them to a system.
+
+* Testing. Sentinel provides a test framework designed specifically for automation. This allows developers and CI systems to further verify policies.
+    </description>
+    <summary>Sentinel is built around the idea of Policy As Code and provides all the benefits of policy as code.</summary>
+    <releaseNotes>See https://docs.hashicorp.com/sentinel/changelog</releaseNotes>
+    <copyright>HashiCorp</copyright>
+    <tags>terraform hashicorp sentinel policy</tags>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
+<!-- character encoding: "UTF-8" -->
