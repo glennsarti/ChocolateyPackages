@@ -10,10 +10,11 @@ if ($refreshenv -ne $null -and $refreshenv.CommandType -ne 'Application') {
   Write-Warning "We detected that you do not have the Chocolatey PowerShell profile installed, which is necessary for 'refreshenv' to work in PowerShell."
 }
 
-Write-Host "Installing au module..."
-Install-Module au -Scope CurrentUser -Force -ErrorAction 'Stop' -Confirm:$false
+Write-Host "Using local AU module..."
+$ModulePath = Join-Path $PSScriptRoot ".." "modules" "AU"
+Import-Module -Name $ModulePath -PassThru -Force
 
-Write-Host "Module installed."
-Get-Module au -ListAvailable | ForEach-Object {
+# Write-Host "Module installed."
+Get-Module au | ForEach-Object {
   Write-Host "Name: $($_.Name)  Version: $($_.Version)" -ForegroundColor Green
 }
