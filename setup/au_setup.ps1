@@ -11,8 +11,9 @@ if ($refreshenv -ne $null -and $refreshenv.CommandType -ne 'Application') {
 }
 
 Write-Host "Using local AU module..."
-$ModulePath = Join-Path $PSScriptRoot ".." "modules" "AU"
-Import-Module -Name $ModulePath -PassThru -Force
+$ModulePath = Resolve-Path (Join-Path $PSScriptRoot ".." "modules")
+$ENV:PSModulePath = "$ModulePath$([IO.Path]::PathSeparator)$($ENV:PSModulePath)"
+Import-Module 'AU' -PassThru -Force
 
 # Write-Host "Module installed."
 Get-Module au | ForEach-Object {

@@ -65,7 +65,7 @@ $Options = [ordered]@{
     ForcedPackages = $ForcedPackages -split ' '
     BeforeEach = {
         param($PackageName, $Options )
-        $p = $Options.ForcedPackages | Select-Object { $_ -match "^${PackageName}(?:\:(.+))*$" }
+        $p = $Options.ForcedPackages | Where-Object { $_ -match "^${PackageName}(?:\:(.+))*$" }
         if (!$p) { return }
 
         $global:au_Force   = $true
