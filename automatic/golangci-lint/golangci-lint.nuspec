@@ -8,7 +8,6 @@
     <owners>Glenn Sarti</owners>
     <projectUrl>https://github.com/golangci/golangci-lint</projectUrl>
     <packageSourceUrl>https://github.com/glennsarti/ChocolateyPackages</packageSourceUrl>
-    <projectSourceUrl>https://github.com/golangci/golangci-lint</projectSourceUrl>
     <docsUrl>https://golangci-lint.run/</docsUrl>
     <bugTrackerUrl>https://github.com/golangci/golangci-lint/issues</bugTrackerUrl>
     <licenseUrl>https://github.com/golangci/golangci-lint/blob/master/LICENSE</licenseUrl>
