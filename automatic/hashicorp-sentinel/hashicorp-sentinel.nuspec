@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>hashicorp-sentinel</id>
-    <version>0.19.2</version>
+    <version>0.19.3</version>
     <title>HashiCorp Sentinel</title>
     <authors>HashiCorp</authors>
     <owners>Glenn Sarti</owners>
