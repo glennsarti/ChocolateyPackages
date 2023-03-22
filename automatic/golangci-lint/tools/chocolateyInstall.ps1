@@ -1,10 +1,10 @@
 ﻿$packageName = 'golangci-lint'
-$url32       = 'https://github.com/golangci/golangci-lint/releases/download/v1.52.0/golangci-lint-1.52.0-windows-386.zip'
-$url64       = 'https://github.com/golangci/golangci-lint/releases/download/v1.52.0/golangci-lint-1.52.0-windows-amd64.zip'
-$checksum32  = 'aac32ff9e112c86ce549a4cf095527f03d0297e55f2c0fe65b8bd3eb4979500b'
-$checksum64  = '65a5841b68b717f135d5ee17ffa1df9ab403e24b3d07b195448fd97bbb30d565'
-$zipFolder32 = 'golangci-lint-1.52.0-windows-386'
-$zipFolder64 = 'golangci-lint-1.52.0-windows-amd64'
+$url32       = 'https://github.com/golangci/golangci-lint/releases/download/v1.52.1/golangci-lint-1.52.1-windows-386.zip'
+$url64       = 'https://github.com/golangci/golangci-lint/releases/download/v1.52.1/golangci-lint-1.52.1-windows-amd64.zip'
+$checksum32  = 'db5d186246f44820c80ab725b5babf4198cff0c183f2184b8dd34ac983f2b899'
+$checksum64  = 'a6fe8a6b7d76b7a1f19ab7359cf93ab9efc6dad7e625c39a5a505310d06721ca'
+$zipFolder32 = 'golangci-lint-1.52.1-windows-386'
+$zipFolder64 = 'golangci-lint-1.52.1-windows-amd64'
 $installDir = Split-Path $MyInvocation.MyCommand.Definition
 
 $zipFolder = $zipFolder64
