@@ -18,42 +18,46 @@ function global:au_SearchReplace {
 
 function global:au_GetLatest {
   $streams = [ordered]@{}
-  $VersionRegEx = 'v(\d+\.\d+\.\d+)'
 
-  $Header = @{
-    "Accept" = "application/vnd.github.v3+json"
-  }
+  # Golangci-lint is updates are currently disable for the moment as the maintainers of that project are doing their own releases
+  # So instead of deleting this code, we'll just disable it
 
-  # We only care about the first 30 releases.
-  $Page = 1
-  $Url = "https://api.github.com/repos/$GitHubOrg/$GitHubRepo/releases?per_page=30&page=$Page"
+  # $VersionRegEx = 'v(\d+\.\d+\.\d+)'
 
-  $result = Invoke-RestMethod -Uri $Url -Method 'GET' -Headers $Header
+  # $Header = @{
+  #   "Accept" = "application/vnd.github.v3+json"
+  # }
 
-  $result | ForEach-Object {
-    if ($matches.count -gt 0) { [void]$matches.clear }
-    if ($_.Name -match $VersionRegEx) {
-      Write-Output ([PSCustomObject]@{
-        Version = [System.Version]$matches[1]
-        Name = $_.Name
-      })
-    }
-  } |
-  Sort-Object -Descending -Property Version |
-  ForEach-Object {
-      $ver = $_.Version
-      $minorVer = $ver.ToString(2)
-      if (!$streams.Contains($minorVer)) {
-        $download64 = "https://github.com/$GitHubOrg/$GitHubRepo/releases/download/$($_.Name)/golangci-lint-$ver-windows-amd64.zip"
-        $download32 = "https://github.com/$GitHubOrg/$GitHubRepo/releases/download/$($_.Name)/golangci-lint-$ver-windows-386.zip"
-        $streams.$minorVer = @{ URL64 = $download64;
-                                URL32 = $download32;
-                                ZipFolder64 ="golangci-lint-$ver-windows-amd64"
-                                ZipFolder32 ="golangci-lint-$ver-windows-386"
-                                Version = $ver.ToString()
-        }
-      }
-  }
+  # # We only care about the first 30 releases.
+  # $Page = 1
+  # $Url = "https://api.github.com/repos/$GitHubOrg/$GitHubRepo/releases?per_page=30&page=$Page"
+
+  # $result = Invoke-RestMethod -Uri $Url -Method 'GET' -Headers $Header
+
+  # $result | ForEach-Object {
+  #   if ($matches.count -gt 0) { [void]$matches.clear }
+  #   if ($_.Name -match $VersionRegEx) {
+  #     Write-Output ([PSCustomObject]@{
+  #       Version = [System.Version]$matches[1]
+  #       Name = $_.Name
+  #     })
+  #   }
+  # } |
+  # Sort-Object -Descending -Property Version |
+  # ForEach-Object {
+  #     $ver = $_.Version
+  #     $minorVer = $ver.ToString(2)
+  #     if (!$streams.Contains($minorVer)) {
+  #       $download64 = "https://github.com/$GitHubOrg/$GitHubRepo/releases/download/$($_.Name)/golangci-lint-$ver-windows-amd64.zip"
+  #       $download32 = "https://github.com/$GitHubOrg/$GitHubRepo/releases/download/$($_.Name)/golangci-lint-$ver-windows-386.zip"
+  #       $streams.$minorVer = @{ URL64 = $download64;
+  #                               URL32 = $download32;
+  #                               ZipFolder64 ="golangci-lint-$ver-windows-amd64"
+  #                               ZipFolder32 ="golangci-lint-$ver-windows-386"
+  #                               Version = $ver.ToString()
+  #       }
+  #     }
+  # }
 
   @{ Streams = $streams }
 }
