@@ -1,4 +1,4 @@
-import-module au
+import-module Chocolatey-AU
 
 $GitHubOrg = 'golangci'
 $GitHubRepo = 'golangci-lint'

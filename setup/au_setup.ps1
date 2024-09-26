@@ -16,6 +16,6 @@ $ENV:PSModulePath = "$ModulePath$([IO.Path]::PathSeparator)$($ENV:PSModulePath)"
 Import-Module 'Chocolatey-AU' -PassThru -Force
 
 # Write-Host "Module installed."
-Get-Module au | ForEach-Object {
+Get-Module Chocolatey-AU | ForEach-Object {
   Write-Host "Name: $($_.Name)  Version: $($_.Version)" -ForegroundColor Green
 }
