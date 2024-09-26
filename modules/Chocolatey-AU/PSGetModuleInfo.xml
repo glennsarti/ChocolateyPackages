@@ -1,0 +1,155 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>Microsoft.PowerShell.Commands.PSRepositoryItemInfo</T>
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Name">Chocolatey-AU</S>
+      <Version N="Version">1.0.0</Version>
+      <S N="Type">Module</S>
+      <S N="Description">Chocolatey Automatic Package Updater Module</S>
+      <S N="Author">Miodrag Milic Chocolatey Community</S>
+      <S N="CompanyName">chocolatey-community</S>
+      <S N="Copyright">Miodrag Milic, Chocolatey Software, Inc.</S>
+      <DT N="PublishedDate">2024-03-11T17:49:02+08:00</DT>
+      <Obj N="InstalledDate" RefId="1">
+        <DT>2024-09-26T11:56:14.6275187+08:00</DT>
+        <MS>
+          <Obj N="DisplayHint" RefId="2">
+            <TN RefId="1">
+              <T>Microsoft.PowerShell.Commands.DisplayHintType</T>
+              <T>System.Enum</T>
+              <T>System.ValueType</T>
+              <T>System.Object</T>
+            </TN>
+            <ToString>DateTime</ToString>
+            <I32>2</I32>
+          </Obj>
+        </MS>
+      </Obj>
+      <Nil N="UpdatedDate" />
+      <URI N="LicenseUri">https://www.gnu.org/licenses/gpl-2.0.txt</URI>
+      <URI N="ProjectUri">https://github.com/chocolatey-community/chocolatey-au</URI>
+      <URI N="IconUri">https://img.chocolatey.org/nupkg/chocolateyicon.png</URI>
+      <Obj N="Tags" RefId="3">
+        <TN RefId="2">
+          <T>System.Object[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>chocolatey</S>
+          <S>update</S>
+          <S>module</S>
+          <S>package</S>
+          <S>PSModule</S>
+        </LST>
+      </Obj>
+      <Obj N="Includes" RefId="4">
+        <TN RefId="3">
+          <T>System.Collections.Hashtable</T>
+          <T>System.Object</T>
+        </TN>
+        <DCT>
+          <En>
+            <S N="Key">Function</S>
+            <Obj N="Value" RefId="5">
+              <TNRef RefId="2" />
+              <LST>
+                <S>Get-AUPackages</S>
+                <S>Get-RemoteChecksum</S>
+                <S>Get-RemoteFiles</S>
+                <S>Get-Version</S>
+                <S>Push-Package</S>
+                <S>Set-DescriptionFromReadme</S>
+                <S>Test-Package</S>
+                <S>Update-AUPackages</S>
+                <S>Update-Package</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Cmdlet</S>
+            <Obj N="Value" RefId="6">
+              <TNRef RefId="2" />
+              <LST />
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">Command</S>
+            <Obj N="Value" RefId="7">
+              <TNRef RefId="2" />
+              <LST>
+                <S>Get-AUPackages</S>
+                <S>Get-RemoteChecksum</S>
+                <S>Get-RemoteFiles</S>
+                <S>Get-Version</S>
+                <S>Push-Package</S>
+                <S>Set-DescriptionFromReadme</S>
+                <S>Test-Package</S>
+                <S>Update-AUPackages</S>
+                <S>Update-Package</S>
+              </LST>
+            </Obj>
+          </En>
+          <En>
+            <S N="Key">DscResource</S>
+            <Ref N="Value" RefId="6" />
+          </En>
+          <En>
+            <S N="Key">RoleCapability</S>
+            <Ref N="Value" RefId="6" />
+          </En>
+          <En>
+            <S N="Key">Workflow</S>
+            <Ref N="Value" RefId="6" />
+          </En>
+        </DCT>
+      </Obj>
+      <Nil N="PowerShellGetFormatVersion" />
+      <S N="ReleaseNotes">https://github.com/chocolatey-community/chocolatey-au/blob/master/CHANGELOG.md</S>
+      <Obj N="Dependencies" RefId="8">
+        <TNRef RefId="2" />
+        <LST />
+      </Obj>
+      <S N="RepositorySourceLocation">https://www.powershellgallery.com/api/v2</S>
+      <S N="Repository">PSGallery</S>
+      <S N="PackageManagementProvider">NuGet</S>
+      <Obj N="AdditionalMetadata" RefId="9">
+        <TN RefId="4">
+          <T>System.Management.Automation.PSCustomObject</T>
+          <T>System.Object</T>
+        </TN>
+        <MS>
+          <S N="copyright">Miodrag Milic, Chocolatey Software, Inc.</S>
+          <S N="description">Chocolatey Automatic Package Updater Module</S>
+          <S N="requireLicenseAcceptance">False</S>
+          <S N="releaseNotes">https://github.com/chocolatey-community/chocolatey-au/blob/master/CHANGELOG.md</S>
+          <S N="isLatestVersion">True</S>
+          <S N="isAbsoluteLatestVersion">True</S>
+          <S N="versionDownloadCount">1950</S>
+          <S N="downloadCount">1950</S>
+          <S N="packageSize">300188</S>
+          <S N="published">11/03/2024 5:49:02 PM +08:00</S>
+          <S N="created">11/03/2024 5:49:02 PM +08:00</S>
+          <S N="lastUpdated">26/09/2024 3:10:00 AM +08:00</S>
+          <S N="tags">chocolatey update module package PSModule</S>
+          <S N="developmentDependency">False</S>
+          <S N="updated">2024-09-26T03:10:00Z</S>
+          <S N="NormalizedVersion">1.0.0</S>
+          <S N="Authors">Miodrag Milic Chocolatey Community</S>
+          <S N="IsPrerelease">false</S>
+          <S N="ItemType">Module</S>
+          <S N="FileList">Chocolatey-AU.nuspec|Plugins\Report\r_ok.png|Chocolatey-AU.psd1|Plugins\Report\text.ps1|Chocolatey-AU.psm1|Private\AUPackage.ps1|en-US\about_Chocolatey-AU.help.txt|Private\AUVersion.ps1|Plugins\Gist.ps1|Private\check_url.ps1|Plugins\Git.ps1|Private\is_url.ps1|Plugins\GitLab.ps1|Private\is_version.ps1|Plugins\GitReleases.ps1|Private\request.ps1|Plugins\Gitter.ps1|Public\Get-AUPackages.ps1|Plugins\History.ps1|Public\Get-RemoteChecksum.ps1|Plugins\Mail.ps1|Public\Get-RemoteFiles.ps1|Plugins\PullRequest.ps1|Public\Get-Version.ps1|Plugins\Report.ps1|Public\Push-Package.ps1|Plugins\RunInfo.ps1|Public\Set-DescriptionFromReadme.ps1|Plugins\Snippet.ps1|Public\Test-Package.ps1|Plugins\Report\markdown.ps1|Public\Update-AUPackages.ps1|Plugins\Report\markdown_funcs.ps1|Public\Update-Package.ps1|Plugins\Report\r_er.png</S>
+          <S N="Functions">Get-AUPackages Get-RemoteChecksum Get-RemoteFiles Get-Version Push-Package Set-DescriptionFromReadme Test-Package Update-AUPackages Update-Package</S>
+          <S N="GUID">274347eb-7f87-4c2d-9813-aed90330286b</S>
+          <S N="PowerShellVersion">5.0</S>
+          <S N="CompanyName">Chocolatey Software, Inc.</S>
+        </MS>
+      </Obj>
+      <S N="InstalledLocation">C:\Users\glenn\OneDrive\Documents\PowerShell\Modules\Chocolatey-AU\1.0.0</S>
+    </MS>
+  </Obj>
+</Objs>

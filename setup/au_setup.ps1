@@ -1,5 +1,5 @@
-if ($PSVersionTable.PSVersion.Major -lt 7) {
-  Throw "Only supported on PowerShell 7"
+if ($PSVersionTable.PSVersion.Major -ne 5) {
+  Throw "Only supported on PowerShell 5"
   Exit 1
 }
 
@@ -11,9 +11,9 @@ if ($refreshenv -ne $null -and $refreshenv.CommandType -ne 'Application') {
 }
 
 Write-Host "Using local AU module..."
-$ModulePath = Resolve-Path (Join-Path $PSScriptRoot ".." "modules")
+$ModulePath = Resolve-Path (Join-Path (Join-Path $PSScriptRoot "..") "modules")
 $ENV:PSModulePath = "$ModulePath$([IO.Path]::PathSeparator)$($ENV:PSModulePath)"
-Import-Module 'AU' -PassThru -Force
+Import-Module 'Chocolatey-AU' -PassThru -Force
 
 # Write-Host "Module installed."
 Get-Module au | ForEach-Object {
