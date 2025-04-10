@@ -1,6 +1,6 @@
 ﻿$packageName = 'gitsign'
-$url64       = 'https://github.com/sigstore/gitsign/releases/download/v0.12.0/gitsign_0.12.0_windows_amd64.exe'
-$checksum64  = '4b111b65e44ba10609dc6e614ddb00155e3f13182d2bf2557a282cbbd3e7e653'
+$url64       = 'https://github.com/sigstore/gitsign/releases/download/v0.13.0/gitsign_0.13.0_windows_amd64.exe'
+$checksum64  = 'da5f80ca35cd1faefb6d796571fe051e8365440ee28e50fd9b190f30942bca65'
 
 # Install it
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
