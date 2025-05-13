@@ -1,8 +1,8 @@
 ﻿$packageName = 'hashicorp-sentinel'
-$url32       = 'https://releases.hashicorp.com/sentinel/0.30.0/sentinel_0.30.0_windows_386.zip'
-$url64       = 'https://releases.hashicorp.com/sentinel/0.30.0/sentinel_0.30.0_windows_amd64.zip'
-$checksum32  = '7e9f3fb6791a936387a432dfde4df9f8670c80ff63934296187576a7b4e2abfa'
-$checksum64  = 'cefe646b9fba66fb6f9d57856a2203f868ae613012bb4196a7d5d0c5441da0c9'
+$url32       = 'https://releases.hashicorp.com/sentinel/0.40.0/sentinel_0.40.0_windows_386.zip'
+$url64       = 'https://releases.hashicorp.com/sentinel/0.40.0/sentinel_0.40.0_windows_amd64.zip'
+$checksum32  = 'ff669db6510ec0a5c86f41da72fa974b855213cbb1332cb8eae32dc300bed241'
+$checksum64  = 'b289a0f00afe15765e92833283d238183368743f75787b87ab0f5352e77634b3'
 $installDir = Split-Path $MyInvocation.MyCommand.Definition
 
 $packageArgs = @{
